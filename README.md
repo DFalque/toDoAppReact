@@ -14,3 +14,6 @@ Utilizaremos 3 ramas para el desarrollo de la aplicación:
 
 ### Metodología TDD
 
+### Diseño
+
+Figma
