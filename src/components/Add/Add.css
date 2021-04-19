@@ -1,0 +1,17 @@
+:root{
+    --grey1: #474747;
+    --grey2: #6E6E6E;
+    --grey3: #949494;
+    --grey4: #E7E7E7;
+    --white: #FFFF;
+  }
+
+.Add{
+    background-color: var(--grey2);
+    display:flex;
+    justify-content: center;
+    align-self: center ;
+    margin:5px;
+    height: 20px;
+
+}
