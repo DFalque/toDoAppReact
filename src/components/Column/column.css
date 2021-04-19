@@ -1,0 +1,16 @@
+:root{
+    --grey1: #474747;
+    --grey2: #6E6E6E;
+    --grey3: #949494;
+    --grey4: #E7E7E7;
+  
+  }
+
+.Column{
+    max-width: 300px ;
+    background-color:var(--grey3);
+    height: 80%;
+    margin-left: 20px;
+    padding: 10px;
+  
+}
