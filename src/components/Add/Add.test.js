@@ -5,5 +5,5 @@ test("renders Add", () => {
   const addComponent = render(<Add />);
   //const linkElement = screen.getByText("Add");
   //console.log(linkElement);
-  addComponent.getAllByText("Add");
+  addComponent.getAllByText("Close");
 });

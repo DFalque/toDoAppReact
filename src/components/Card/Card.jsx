@@ -1,10 +1,10 @@
 import React from "react";
 import "./Card.css";
 
-const Card = () => {
+const Card = ({data}) => {
   return (
     <div className="Card">
-      <p>hola amigos</p>
+      <p>{data.text}</p>
     </div>
   );
 };
