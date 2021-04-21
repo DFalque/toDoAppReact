@@ -1,23 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
-
+import React, { useState } from "react";
+import "./App.css";
+import Column from "./components/Column/Column";
+import Header from "./components/Header/Header";
+import Add from "./components/Add/Add";
 function App() {
+  //STATES
+  const [columns, setColumns] = useState(defaultColumn());
+  console.log(columns);
+
+  //DEFAULTS FORMS
+  function defaultColumn() {
+    return [
+      {
+        title: "pepee",
+        id: 0,
+      },
+      { title: "que pasaa", id: 1 },
+    ];
+  }
+
+  //CHANGE STATE
+  const handlerColumn = (e) => {
+    setColumns([...columns, { title: e, id: 100 }]);
+  };
+
+  //RENDER
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header />
+      <div className="ColumnContainer">
+        {columns.map((data) => {
+          console.log(data.title);
+          return <Column key={data.id} data={data} />;
+        })}
+        <Add list={false} doThis={handlerColumn} />
+      </div>
     </div>
   );
 }
