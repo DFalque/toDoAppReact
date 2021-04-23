@@ -19,6 +19,7 @@ const Column = ({data}) => {
     }
 
     return (
+        <>
         <Droppable droppableId={String(data.id)}>
             {(provided)=>(        
             <div 
@@ -26,16 +27,19 @@ const Column = ({data}) => {
             ref={provided.innerRef} 
             className="Column">
                 <h3>{data.title}</h3>
-                {card.map((dataCard, index)=>{return(
-                    <Card   key={dataCard.id} 
-                            data={dataCard} 
-                            id={dataCard.id}
-                            index={index}  />)})}
-                    <Add list={true} doThis={handlerCard} />
-            {provided.placeholder}
+                <div className='Container-Cards'>
+                    {card.map((dataCard, index)=>{return(
+                        <Card   key={dataCard.id} 
+                                data={dataCard} 
+                                id={dataCard.id}
+                                index={index}  />)})}
+                        
+                    {provided.placeholder}
+                </div>
+            <Add list={true} doThis={handlerCard} />
              </div>)}
-
         </Droppable>
+        </>
     )
 }
 
