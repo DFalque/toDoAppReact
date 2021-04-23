@@ -16,13 +16,10 @@ const Add = ({list, doThis}) => {
     console.log(open);
   }
 
-
-
   const handlerDrag = () => {
     setOpen(false);
-    console.log("este es el texto " ,text)
-    doThis(text)
-
+    if(text ===''){console.log('nothing')}else{doThis(text)}
+    setText('');
   }
 
   const handlerInputChange = (e) => {
@@ -33,7 +30,7 @@ const Add = ({list, doThis}) => {
   //RENDER FUNTION
   const renderButton = () => {
     return (
-    <div className='Add ' onClick={handlerClick} >
+    <div className='Add ' onClick={handlerClick}  >
       <p>{addtext}</p>
       </div>)
 
@@ -44,8 +41,11 @@ const Add = ({list, doThis}) => {
     <div className='Add Open ' onClick={() =>handlerClick}  onBlur={handlerDrag}  draggable="true" >
     <input autoFocus 
     className="input" 
-    placeholder="Tranquilo tio" 
-    onChange={(e)=>handlerInputChange(e.target.value)}></input>
+    placeholder="Introduce a task" 
+    onChange={(e)=>handlerInputChange(e.target.value)}
+    onKeyPress={(e)=> e.key === 'Enter' ? handlerDrag() : null}
+    >
+    </input>
     <div>
       <p>Add</p>
       <p>Close</p>
