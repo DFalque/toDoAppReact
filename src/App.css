@@ -17,6 +17,7 @@
 html{background-color: var(--grey4);
 }
 
+
 h1{
   margin:0;
 }
@@ -30,7 +31,9 @@ p{
 }
 
 .App {
-  height: 90vh;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 
@@ -55,12 +58,12 @@ p{
 
 .ColumnContainer{
   padding-top: 10px;
-  height: 100%;
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
   margin: 0;
   overflow-x: scroll;
+  height: 100%;
   
 }
 
