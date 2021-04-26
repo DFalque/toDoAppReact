@@ -1,26 +1,41 @@
-import React, {useState} from 'react'
+import React, {useState,useContext, useEffect} from 'react'
 import "./column.css"
 import Card from "../Card/Card"
 import Add from "../Add/Add"
 import { nanoid } from "nanoid";
 import {Droppable} from "react-beautiful-dnd";
+import DynamicContext from '../../context/DynamicContext'
 
 
-const Column = ({data}) => {
-    const [card,setCard] = useState(defaultCard())
+const Column = ({data, dragFunction}) => {
+    //STATE
+    const {column, setColumn} = useContext(DynamicContext);
 
-    function defaultCard (){
-        let model = nanoid();
-        return[{text:'Write your Task here',id:model}]}
+    // DEFAULT 
 
+    // HANDLE STATE
     const handlerCard = (e) => {
-    let model = nanoid();
-       setCard(  [...card,{text:e, id:model}]);
+        let model = nanoid();
+        //data.card.push({text:e, id:model})
+        const newList = column.map(list => {
+            if(list.id === data.id){
+                return{
+                    ...list,
+                    card:[...list.card,{text:e, id:model} ]
+                }
+            }else{return list}
+        })
+        setColumn(newList);
     }
+
+ 
+useEffect(() => {
+   console.log(column);
+}, [column])  
 
     return (
         <>
-        <Droppable droppableId={String(data.id)}>
+        <Droppable droppableId={String(data.id)} >
             {(provided)=>(        
             <div 
             {...provided.droppableProps} 
@@ -28,7 +43,7 @@ const Column = ({data}) => {
             className="Column">
                 <h3>{data.title}</h3>
                 <div className='Container-Cards'>
-                    {card.map((dataCard, index)=>{return(
+                    {data.card.map((dataCard, index)=>{return(
                         <Card   key={dataCard.id} 
                                 data={dataCard} 
                                 id={dataCard.id}

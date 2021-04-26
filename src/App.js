@@ -1,15 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "./App.css";
 import Column from "./components/Column/Column";
 import Header from "./components/Header/Header";
 import Add from "./components/Add/Add";
 import { nanoid } from "nanoid";
 import { DragDropContext } from "react-beautiful-dnd";
+//import { StateProvider } from "./context/DynamicContext";
+import DynamicContext from "./context/DynamicContext";
 
 function App() {
   //STATES
-  const [columns, setColumns] = useState(defaultColumn());
-  console.log(columns);
+  // const [columns, setColumns] = useState(defaultColumn());
+  const { column, setColumn, draging } = useContext(DynamicContext);
 
   //DEFAULTS FORMS
   function defaultColumn() {
@@ -24,11 +26,30 @@ function App() {
   //CHANGE STATE
   const handlerColumn = (e) => {
     let model = nanoid();
-    setColumns([...columns, { title: e, id: model }]);
+    setColumn([...column, { title: e, id: model, card: [] }]);
+    // const cosita = [...column];
+    //console.log("eeeeinngggg");
+    //console.log(cosita);
   };
 
   //DRAG FUNCTIONS
-  const onDragEnd = () => {};
+  const onDragEnd = (result) => {
+    const { destination, source, draggableId } = result;
+    console.log("Este es el destino", destination);
+    console.log("Esto es el source", source);
+    console.log("Esto es el draggable", draggableId);
+
+    const destinationId = destination.droppableId; // el ID de la columan destino
+    const destinationIndex = destination.index; // la posición de la columna destino
+    const sourceIndex = source.index; // la posición de la columna origen
+    const sourceId = source.droppableId; // el ID de la columna origen
+
+    draging(destinationId, destinationIndex, sourceIndex, sourceId);
+
+    if (!destination) {
+      return;
+    }
+  };
 
   //RENDER
   return (
@@ -36,9 +57,16 @@ function App() {
       <div className="App">
         <Header />
         <div className="ColumnContainer">
-          {columns.map((data) => {
+          {column.map((data) => {
             console.log(data.title);
-            return <Column key={data.id} data={data} />;
+            return (
+              <Column
+                key={data.id}
+                data={data}
+                index={data.index}
+                dragFunction={onDragEnd}
+              />
+            );
           })}
           <Add list={false} doThis={handlerColumn} />
         </div>
