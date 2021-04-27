@@ -21,17 +21,18 @@ export function StateProvider({ children }) {
 
   //FUNCTION
   function draging(destinationId, destinationIndex, sourceIndex, sourceId) {
-    const newState = [...column];
+    //const newState = [...column];
     if (sourceId === destinationId) {
       const list = column.find((a) => a.id === sourceId);
-      //  console.log("Esta es la columna que buscamos");
-      // console.log(list);
-      //  console.log("Esto es la tarjetas que hacemos drag");
-      // console.log(sourceIndex);
-      // const cardDrag = list.card.slice(sourceIndex, 1);
-      // console.log(cardDrag);
-      // list.card.slice(destinationIndex, 0, ...cardDrag);
-      //console.log(list);
+      const cardDrag = list.card.splice(sourceIndex, 1);
+      list.card.splice(destinationIndex, 0, ...cardDrag);
+    } else {
+      const listSource = column.find((a) => a.id === sourceId);
+      const listDestination = column.find((a) => a.id === destinationId);
+      const cardDragSource = listSource.card.splice(sourceIndex, 1);
+      console.log("fuente :", cardDragSource);
+      //listSource.card.splice(destinationIndex, 0, ...cardDragDestination);
+      listDestination.card.splice(destinationIndex, 0, ...cardDragSource);
     }
   }
 
