@@ -4,26 +4,70 @@
     --grey3: #949494;
     --grey4: #E7E7E7;
     --white: #FFFF;
+
+
+    --color1: #243E17;
+    --color2: #F7FAF5;
+    --color3: #EAF1E7;
+    --color4: #FAFBF9;
+    
   }
 
 .Add{
-    background-color: var(--grey2);
+    background-color: var(--color2);
     display:flex;
     justify-content: center;
     margin:5px;
     height: 20px;
+    border-radius: 5px;
+    border-width: 1px;
+    border-color: var(--color1);
+    border-style: solid;
+    margin-bottom: 10px;
 
 }
 
 .Open{
-  height: 100px;
-  justify-content: flex-start;
+  display: flex;
+  min-height: 150px;
+  justify-content: space-between;
   flex-direction: column;
+  border-radius: 2px;
+  border-width: 0px;
+  border-style:none;
 }
 
 .input{
-  height: 80%;
-  background-color: white;
-border: none;  
+  border: none;  
 }
 
+.containerAddOpen{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #EAF1E7;
+}
+
+
+.AddButton{
+  display: flex;
+  margin: 10px;
+  background-color: var(--color3);
+  width: 30%;
+  text-align: center;
+  border-radius: 5px;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.CloseButton{
+  display: flex;
+  margin: 10px;
+  background-color: var(--color3);
+  width: 30%;
+  text-align: center;
+  border-radius: 5px;
+  justify-content: center;
+  align-items: center;
+}

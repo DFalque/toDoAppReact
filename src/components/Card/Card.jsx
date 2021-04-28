@@ -1,6 +1,9 @@
 import React from "react";
 import "./Card.css";
 import {Draggable} from 'react-beautiful-dnd';
+import TextareaAutosize from 'react-textarea-autosize';
+
+
 
 const Card = ({data,index}) => {
   return (
@@ -10,7 +13,10 @@ const Card = ({data,index}) => {
             ref={provided.innerRef} 
             {...provided.draggableProps} 
             {...provided.dragHandleProps}>
-              <p>{data.text}</p>
+              <div className='CardText' > 
+              <p className='TextCard'>{data.text}</p></div>
+             
+              
     </div>)}
 
     </Draggable>

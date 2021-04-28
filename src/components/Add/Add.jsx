@@ -1,5 +1,7 @@
 import React, {useState} from "react";
 import "./Add.css";
+import TextareaAutosize from 'react-textarea-autosize';
+
 
 const Add = ({list, doThis}) => {
   const [open, setOpen]  = useState(false);
@@ -7,7 +9,8 @@ const Add = ({list, doThis}) => {
 
 
   //VARIABLES
-  const addtext =  list ? "Crear Tarjeta" : "Crear nueva Columna";
+  const addtext =  list ? "+ Add a new task" : "+ Add a new List";
+
 
 
 // CHANGE STATE
@@ -29,26 +32,48 @@ const Add = ({list, doThis}) => {
 
   //RENDER FUNTION
   const renderButton = () => {
-    return (
-    <div className='Add ' onClick={handlerClick}  >
-      <p>{addtext}</p>
-      </div>)
+    if(list){return (
+      <div className='Add ' onClick={handlerClick}  >
+        <p>{addtext}</p>
+        </div>)}else{
+          return (
+            <div className='Add ' onClick={handlerClick} style={{
+              minWidth:250,
+            }} >
+              <p>{addtext}</p>
+              </div>
+              )
+        }
+
 
   }
 
   const renderPlaceholder = () =>{
     return (    
     <div className='Add Open ' onClick={() =>handlerClick}  onBlur={handlerDrag}  draggable="true" >
-    <input autoFocus 
-    className="input" 
+    <TextareaAutosize 
+    autoFocus  
     placeholder="Introduce a task" 
     onChange={(e)=>handlerInputChange(e.target.value)}
     onKeyPress={(e)=> e.key === 'Enter' ? handlerDrag() : null}
+    style={{
+      overflow:'visible',
+      resize:'none',
+      border:'none',
+      outline:'none',
+      flexGrow: 2,
+      borderRadius: 5,
+
+    }}
     >
-    </input>
-    <div>
-      <p>Add</p>
-      <p>Close</p>
+    </TextareaAutosize>
+    <div className='containerAddOpen'>
+        <div className='AddButton'>
+        <p>+ Add</p>
+        </div>
+        <div className='CloseButton' >
+        <p>X Close</p>
+        </div>
     </div>
     </div>)
   }
