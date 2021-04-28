@@ -1,4 +1,4 @@
-import React, {useState,useContext, useEffect} from 'react'
+import React, {useContext, useEffect} from 'react'
 import "./column.css"
 import Card from "../Card/Card"
 import Add from "../Add/Add"
@@ -7,7 +7,7 @@ import {Droppable} from "react-beautiful-dnd";
 import DynamicContext from '../../context/DynamicContext'
 
 
-const Column = ({data, dragFunction}) => {
+const Column = ({data}) => {
     //STATE
     const {column, setColumn} = useContext(DynamicContext);
 

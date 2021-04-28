@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import "./App.css";
 import Column from "./components/Column/Column";
 import Header from "./components/Header/Header";
@@ -10,26 +10,14 @@ import DynamicContext from "./context/DynamicContext";
 
 function App() {
   //STATES
-  // const [columns, setColumns] = useState(defaultColumn());
   const { column, setColumn, draging } = useContext(DynamicContext);
 
   //DEFAULTS FORMS
-  function defaultColumn() {
-    return [
-      {
-        title: "Home Task",
-        id: 0,
-      },
-    ];
-  }
 
   //CHANGE STATE
   const handlerColumn = (e) => {
     let model = nanoid();
     setColumn([...column, { title: e, id: model, card: [] }]);
-    // const cosita = [...column];
-    //console.log("eeeeinngggg");
-    //console.log(cosita);
   };
 
   //DRAG FUNCTIONS
@@ -45,10 +33,6 @@ function App() {
     const sourceId = source.droppableId; // el ID de la columna origen
 
     draging(destinationId, destinationIndex, sourceIndex, sourceId);
-
-    if (!destination) {
-      return;
-    }
   };
 
   //RENDER
@@ -56,6 +40,7 @@ function App() {
     <DragDropContext onDragEnd={onDragEnd}>
       <div className="App">
         <Header />
+
         <div className="ColumnContainer">
           {column.map((data) => {
             console.log(data.title);
